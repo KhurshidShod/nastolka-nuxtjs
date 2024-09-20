@@ -37,9 +37,10 @@ const currentCase = ref(null);
 const route = useRoute();
 const router = useRouter();
 console.log(route.params)
+
 const findCurrentCase = () => {
-  const path = route.params.name.split("-").join(" ");
-  currentCase.value = cases.find((cs) => cs.title.toLowerCase() === path);
+  // const path = route.params.name.split("-").join(" ");
+  currentCase.value = cases.find((cs) => cs.title.toLowerCase().split(" ").join("-") === "загадочное-убийство-на-вилле-кортни");
 };
 
 const titleParts = computed(() => {
@@ -55,7 +56,7 @@ const titleParts = computed(() => {
 const redirect = () => {
   const caseTitle = currentCase.value?.title.toLowerCase().split(" ").join("-");
   if (caseTitle) {
-    navigateTo(`/${caseTitle}/confirmation/1`);
+    navigateTo(`/confirmation/1`);
   }
 };
 
