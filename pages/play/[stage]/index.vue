@@ -98,9 +98,9 @@ const submitAnswers = () => {
     JSON.stringify(task.value.trueAnswers.sort()) ===
     JSON.stringify(selectedAnswers.value.sort())
   ) {
-    navigateTo(`/${route.params.stage}/true-answer`);
+    navigateTo(`/play/${route.params.stage}/true-answer`);
   } else {
-    navigateTo(`/${route.params.stage}/false-answer`);
+    navigateTo(`/play/${route.params.stage}/false-answer`);
   }
 };
 

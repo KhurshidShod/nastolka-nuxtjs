@@ -40,8 +40,8 @@ const allCases = ref(cases);
 const router = useRouter();
 
 const redirect = (title) => {
-  const formattedTitle = title.toLowerCase().split(" ").join("-");
-  navigateTo(`/shop/${formattedTitle}`);
+  // const formattedTitle = title.toLowerCase().split(" ").join("-");
+  navigateTo(`/shop`);
 };
 </script>
 <style lang="scss" scoped>

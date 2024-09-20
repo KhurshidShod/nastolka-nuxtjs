@@ -21,8 +21,7 @@ import { cases } from '../../assets/data'
 const isLoading = ref(true)
 
 const redirect = () => {
-    const caseTitleSlug = cases[0].title.toLowerCase().split(' ').join('-')
-    navigateTo(`/shop/${caseTitleSlug}`)
+    navigateTo(`/shop`)
 }
 
 onMounted(() => {

@@ -107,7 +107,7 @@ const helpOpen = ref(false);
 const currentIndex = ref(0);
 
 const redirect = () => {
-  navigateTo(`/stage-${Number(route.params.stage.split("").reverse()[0])}`);
+  navigateTo(`/play/stage-${Number(route.params.stage.split("").reverse()[0])}`);
 };
 
 const findCurrentCase = () => {
