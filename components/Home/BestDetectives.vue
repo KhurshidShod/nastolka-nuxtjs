@@ -28,49 +28,57 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
 import { players } from "~/assets/data";
 
-gsap.registerPlugin(ScrollTrigger);
+let ScrollTrigger = null;
 
 const lupa = ref(null);
 const playersList = ref(players);
 
-// const animateLupa = () => {
-//   gsap.fromTo(
-//     lupa.value,
-//     { x: 500, opacity: 0 },
-//     {
-//       x: 0,
-//       opacity: 1,
-//       ease: "power2.out",
-//       duration: 5,
-//       scrollTrigger: {
-//         trigger: lupa.value,
-//         start: "top 60%",
-//         end: "bottom 50%",
-//         scrub: 1.3,
-//         toggleActions: "play none none reverse",
-//       },
-//     }
-//   );
-// };
+const animateLupa = () => {
+  if (process.client) {
+    gsap.fromTo(
+      lupa.value,
+      { x: 500, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        ease: "power2.out",
+        duration: 5,
+        scrollTrigger: {
+          trigger: lupa.value,
+          start: "top 60%",
+          end: "bottom 50%",
+          scrub: 1.3,
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+};
 
-// const handleMouseMove = () => {
-//   const medals = document.querySelector(".medals");
-//   document.addEventListener("mousemove", (event) => {
-//     const { clientX: x, clientY: y } = event;
-//     medals.style.transform = `translate(${
-//       (x - window.innerWidth / 2) * 0.05
-//     }px, ${(y - window.innerHeight / 2) * 0.05}px)`;
-//   });
-// };
+const handleMouseMove = () => {
+  if (process.client) {
+    const medals = document.querySelector(".medals");
+    document.addEventListener("mousemove", (event) => {
+      const { clientX: x, clientY: y } = event;
+      medals.style.transform = `translate(${
+        (x - window.innerWidth / 2) * 0.05
+      }px, ${(y - window.innerHeight / 2) * 0.05}px)`;
+    });
+  }
+};
 
-// onMounted(() => {
-  // animateLupa();
-  // handleMouseMove();
-// });
+onMounted(async () => {
+  if (process.client) {
+    const module = await import("gsap/ScrollTrigger");
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+    animateLupa();
+    handleMouseMove();
+  }
+});
 </script>
 <style lang="scss" scoped>
 section {

@@ -98,9 +98,8 @@
 import { ref, onMounted } from "vue";
 import { rules } from "~/assets/data";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+let ScrollTrigger = null;
 
 const props = defineProps(["openingPage"]);
 const allRules = ref(rules);
@@ -108,27 +107,33 @@ const allRules = ref(rules);
 const lupaText = ref(null);
 
 const animateLupa = () => {
-  console.log(lupaText.value);
-  gsap.fromTo(
-    lupaText.value,
-    { x: -550 },
-    {
-      x: 0,
-      ease: "power2.out",
-      duration: 5,
-      scrollTrigger: {
-        trigger: lupaText.value,
-        start: "top 50%",
-        end: "bottom 50%",
-        scrub: 1.3,
-        toggleActions: "play none none reverse",
-      },
-    }
-  );
+  if (process.client) {
+    gsap.fromTo(
+      lupaText.value,
+      { x: -550 },
+      {
+        x: 0,
+        ease: "power2.out",
+        duration: 5,
+        scrollTrigger: {
+          trigger: lupaText.value,
+          start: "top 50%",
+          end: "bottom 50%",
+          scrub: 1.3,
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
 };
 
-onMounted(() => {
-  animateLupa();
+onMounted(async () => {
+  if (process.client) {
+    const module = await import("gsap/ScrollTrigger");
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+    animateLupa();
+  }
 });
 </script>
 <style lang="scss" scoped>
