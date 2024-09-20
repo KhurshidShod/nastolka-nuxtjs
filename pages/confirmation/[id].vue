@@ -39,7 +39,7 @@ const redirect = async () => {
   const { slug, id } = route.params;
 
   if (code === playersInput.value) {
-    const newUrl = `/${slug}/stage-${id}`;
+    const newUrl = `/stage-${id}`;
     if (id == 1) {
       openPushUp();
       await waitForPushUpClose();

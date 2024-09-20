@@ -41,18 +41,27 @@ const route = useRoute();
 const router = useRouter();
 console.log(route.params);
 const findCurrentCase = () => {
-  const path = route.params.slug.split("-").join(" ");
-  currentCase.value = cases.find((cs) => cs.title.toLowerCase() === path);
-  currentCaseQuestion.value = currentCase?.value?.caseQuestions?.find(
-    (ques) => ques.id == route.params.stage.split("").reverse()[0]
-  );
+  currentCase.value = cases.find((cs) => cs.title.toLowerCase().split(" ").join("-") === "загадочное-убийство-на-вилле-кортни");
+  currentCaseQuestion.value = cases
+    .find(
+      (cs) =>
+        cs.title.toLowerCase().split(" ").join("-") ===
+        "загадочное-убийство-на-вилле-кортни"
+    ).caseQuestions.find(
+      (ques) => ques.id == route.params.stage?.split("").reverse()[0]
+    );
 };
 
 const redirect = () => {
-  if (currentCase.value?.caseQuestions.length == route.params.stage.split("").reverse()[0]) {
-    navigateTo(`/${route.params.slug}/finished`);
+  if (
+    currentCase.value?.caseQuestions.length ==
+    route.params.stage.split("").reverse()[0]
+  ) {
+    navigateTo(`/finished`);
   } else {
-    navigateTo(`/${route.params.slug}/confirmation/${Number(route.params.stage.split("").reverse()[0]) + 1}`);
+    navigateTo(
+      `/confirmation/${Number(route.params.stage.split("").reverse()[0]) + 1}`
+    );
   }
 };
 

@@ -78,12 +78,9 @@ const addToAnswers = (e) => {
     e.target.checked = false;
   }
 };
-
 const findCurrentCase = () => {
-  const path = route.params.slug.split("-").join(" ");
   task.value = cases
-    .find((cs) => cs.title.toLowerCase() === path)
-    .caseQuestions.find(
+    .find((cs) => cs.title.toLowerCase().split(" ").join("-") === 'загадочное-убийство-на-вилле-кортни').caseQuestions.find(
       (ques) => ques.id == route.params.stage.split("").reverse()[0]
     );
 };
@@ -101,9 +98,9 @@ const submitAnswers = () => {
     JSON.stringify(task.value.trueAnswers.sort()) ===
     JSON.stringify(selectedAnswers.value.sort())
   ) {
-    router.push(`/${route.params.slug}/${route.params.stage}/true-answer`);
+    navigateTo(`/${route.params.stage}/true-answer`);
   } else {
-    router.push(`/${route.params.slug}/${route.params.stage}/false-answer`);
+    navigateTo(`/${route.params.stage}/false-answer`);
   }
 };
 
