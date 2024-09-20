@@ -31,16 +31,16 @@
     faqRef.scrollIntoView({ behavior: 'smooth' });
   };
   
-  const handleMouseMove = (event) => {
-    const questionMark1 = document.querySelector('.question_mark1');
-    const questionMark2 = document.querySelector('.question_mark2');
-    const { clientX: x, clientY: y } = event;
-    questionMark1.style.transform = `translate(${(x - window.innerWidth / 2) * 0.05}px, ${(y - window.innerHeight / 2) * 0.05}px)`;
-    questionMark2.style.transform = `translate(${(x - window.innerWidth / 2) * 0.05}px, ${(y - window.innerHeight / 2) * 0.05}px)`;
-  };
+  // const handleMouseMove = (event) => {
+  //   const questionMark1 = document.querySelector('.question_mark1');
+  //   const questionMark2 = document.querySelector('.question_mark2');
+  //   const { clientX: x, clientY: y } = event;
+  //   questionMark1.style.transform = `translate(${(x - window.innerWidth / 2) * 0.05}px, ${(y - window.innerHeight / 2) * 0.05}px)`;
+  //   questionMark2.style.transform = `translate(${(x - window.innerWidth / 2) * 0.05}px, ${(y - window.innerHeight / 2) * 0.05}px)`;
+  // };
   
   onMounted(() => {
-    document.addEventListener('mousemove', handleMouseMove);
+    // document.addEventListener('mousemove', handleMouseMove);
   });
   
   </script>

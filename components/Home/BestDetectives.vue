@@ -57,20 +57,20 @@ const playersList = ref(players);
 //   );
 // };
 
-const handleMouseMove = () => {
-  const medals = document.querySelector(".medals");
-  document.addEventListener("mousemove", (event) => {
-    const { clientX: x, clientY: y } = event;
-    medals.style.transform = `translate(${
-      (x - window.innerWidth / 2) * 0.05
-    }px, ${(y - window.innerHeight / 2) * 0.05}px)`;
-  });
-};
+// const handleMouseMove = () => {
+//   const medals = document.querySelector(".medals");
+//   document.addEventListener("mousemove", (event) => {
+//     const { clientX: x, clientY: y } = event;
+//     medals.style.transform = `translate(${
+//       (x - window.innerWidth / 2) * 0.05
+//     }px, ${(y - window.innerHeight / 2) * 0.05}px)`;
+//   });
+// };
 
-onMounted(() => {
+// onMounted(() => {
   // animateLupa();
-  handleMouseMove();
-});
+  // handleMouseMove();
+// });
 </script>
 <style lang="scss" scoped>
 section {
